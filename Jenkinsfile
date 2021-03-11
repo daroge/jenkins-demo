@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('sonar') {
       steps {
-        sh '           "${scannerHome}/bin/sonar-scanner"'
+        sh '           "${tool("sonarqube")}/bin/sonar-scanner'
       }
     }
 
