@@ -1,17 +1,20 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.6-openjdk-11'
-      args 'args \'-u root --privileged\''
-    }
-
-  }
+  agent any
   stages {
-    stage('Initialize') {
+    stage('sonar') {
       steps {
-        sh 'mvn clean package'
-      }
-    }
+        sh '''         withSonarQubeEnv(\'sonarqube\') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }timeout(time: 10, unit: \'MINUTES\') {
+            waitForQualityGate abortPipeline: true
+        }
 
+'''
+        }
+      }
+
+    }
+    environment {
+      scannerHome = 'SonarQube'
+    }
   }
-}
