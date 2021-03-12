@@ -1,14 +1,22 @@
 pipeline {
-  agent any
-  stages {
-    stage('sonar') {
-      steps {
-        sh '           "${tool("sonarscanner")}"/bin/sonar-scanner'
-      }
+  agent {
+    docker {
+      image 'adoptopenjdk/maven-openjdk11:latest'
     }
 
   }
-  environment {
-    scannerHome = 'SonarQube'
+  stages {
+    stage('test') {
+      steps {
+        sh '           mvn -B clean test'
+      }
+    }
+
+    stage('build') {
+      steps {
+        sh 'mvn -B -DskipTests clean package'
+      }
+    }
+
   }
 }
