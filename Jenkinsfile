@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'adoptopenjdk/maven-openjdk11:latest'
+      image 'maven:3-alpine'
     }
 
   }
