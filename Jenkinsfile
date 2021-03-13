@@ -20,7 +20,7 @@ pipeline {
 
     stage('sonar') {
       steps {
-        sh 'mvn clean sonar:sonar'
+        sh 'mvn clean sonar:sonar -Dsonar.host.url=http://sonarqube:9000'
       }
     }
 
