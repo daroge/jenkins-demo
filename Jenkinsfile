@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'adoptopenjdk/maven-openjdk11'
-      args '--net="sonarnet"'
+      args '--net="daroge_sonarnet"'
     }
 
   }
