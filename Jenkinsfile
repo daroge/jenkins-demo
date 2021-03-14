@@ -20,8 +20,10 @@ pipeline {
 
     stage('sonar') {
       steps {
-        sh 'mvn clean sonar:sonar -Dsonar.host.url=http://172.24.0.4:9000'
-        withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonar')
+        withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonar') {
+          sh 'mvn sonar:sonar'
+        }
+
       }
     }
 
