@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/index")
+@RequestMapping("/info")
 public class IndexController {
 
-    @GetMapping("/info")
+    @GetMapping
     public String getInfo() {
         return "index";
     }
