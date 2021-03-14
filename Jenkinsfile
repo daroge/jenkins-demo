@@ -22,7 +22,7 @@ pipeline {
     stage('sonar') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonar-jenkins') {
-          sh 'mvn clean sonar:sonar'
+          sh 'mvn clean verify sonar:sonar'
         }
 
       }
